@@ -17,8 +17,24 @@ header {
 h1 {
     color: #901C1C;
     margin-right: 100px;
+    font-weight: lighter;
 }
-
+h3 {
+    margin: 0;
+    color: #901c1cbd;
+    font-size: 14px;
+    font-weight: lighter;
+}
+p {
+    margin: 3px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.821);
+    font-weight: lighter;
+}
+span {
+    color: #0000007d;
+    font-size: 10px;
+}
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -29,6 +45,7 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
+    width: 100%;
 }
 
 .photographer_section article {
@@ -41,10 +58,19 @@ h1 {
 
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 36px;
+    margin: 4px;
+    font-weight: lighter;
+    font-size: 32px;
+    margin-top: 20px;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 0px 20px 5px rgb(218 218 218);
 }
+
+ 
+
