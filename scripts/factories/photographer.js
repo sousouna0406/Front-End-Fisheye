@@ -7,9 +7,10 @@ function photographerFactory(data) {
 
         const article = document.createElement( 'article' );
         article.setAttribute("aria-label", `Article : Profil de ${name}`)
-
-        const idP = document.createElement( 'p' );
-        idP.textContent = id;
+       
+        const link = document.createElement( 'a' );
+        link.href = `photographer.html?id=${id}`;
+        link.setAttribute("aria-label", `Page profil de ${name}.`)
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
@@ -31,11 +32,13 @@ function photographerFactory(data) {
         spanPrice.textContent = `${price}€/Jour`;
         spanPrice.setAttribute("aria-label", `Prix : ${price}/Jour`)
 
+        article.appendChild(link)
         article.appendChild(img);
         article.appendChild(h2);
         article.appendChild(h3);
         article.appendChild(pTagline)
         article.appendChild(spanPrice)
+        
         return (article);
     }
     return { name, picture, getUserCardDOM }

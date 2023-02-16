@@ -6,8 +6,8 @@ async function getPhotographers() {
     const photographersJson = await response.json();
     console.log(photographersJson)
     console.log(photographersJson.photographers)
-    const photographers = photographersJson.photographers
-    console.log(photographers)
+    console.log(photographersJson.media)
+
      return photographersJson
 }
 
