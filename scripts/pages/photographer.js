@@ -1,19 +1,42 @@
 const urlParams = new URLSearchParams(window.location.search);
 const photographeId = urlParams.get("id");
+
 console.log(photographeId);
-function OnePhotographerFactory(data) {
-  if (data != photographeId) {
-    console.log("KO");
+
+async function getPhotographer(photographeId) {
+  const response = await fetch("../data/photographers.json");
+  if (!response.ok) {
+    console.log("pas de reponse");
   }
-  async function getOnePhotographer() {
-    const response = await fetch("../data/photographers.json");
-    if (!response.ok) {
-      console.log("pas de reponse");
-    }
-    const photographeJson = await response.json();
-    console.log(photographeJson);
-    return photographeJson;
-  }
-  getOnePhotographer();
+  const photographersJson = await response.json();
+  const photographer = photographersJson.photographers.find(
+    (photographer) => photographer.id == photographeId
+  );
+  console.log(photographer);
+
+  return photographer;
 }
-OnePhotographerFactory(photographeId);
+
+async function displayData(photographer) {
+  console.log(photographer);
+  const photographersSection = document.querySelector(".photograph-header");
+  const photographerModel = photographerFactory(photographer);
+  console.log(photographerModel);
+  const userCardDOM = photographerModel.getUserCardTxTDOM();
+  photographersSection.appendChild(userCardDOM);
+  const userImgCardDOM = photographerModel.getUserCardImgDOM();
+  photographersSection.appendChild(userImgCardDOM);
+}
+
+async function init() {
+  try {
+    // Récupère les datas des photographes
+    const photographer = await getPhotographer(photographeId);
+    console.log(photographer);
+    displayData(photographer);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+init();

@@ -1,6 +1,6 @@
 function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
-
+  // console.log(data);
   const picture = `assets/photographers/Photographers-ID-Photos/${portrait}`;
 
   function getUserCardDOM() {
@@ -40,5 +40,43 @@ function photographerFactory(data) {
 
     return article;
   }
-  return { name, picture, getUserCardDOM };
+  function getUserCardTxTDOM() {
+    const article = document.createElement("article");
+    article.setAttribute("aria-label", `Article : Profil de ${name}`);
+    const h2 = document.createElement("h2");
+    h2.textContent = name;
+    h2.setAttribute("aria-label", `Nom : ${name}`);
+
+    const h3 = document.createElement("h3");
+    h3.textContent = `${city}, ${country}`;
+    h3.setAttribute("aria-label", `Lieu : ${city}, ${country}`);
+
+    const pTagline = document.createElement("p");
+    pTagline.textContent = tagline;
+    pTagline.setAttribute("aria-label", `Slogant : "${tagline}"`);
+
+    article.appendChild(h2);
+    article.appendChild(h3);
+    article.appendChild(pTagline);
+    return article;
+  }
+  function getUserCardImgDOM() {
+    const article = document.createElement("article");
+    article.setAttribute("aria-label", `Article : Profil de ${name}`);
+
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", `Photo de profil de ${name}.`);
+
+    article.appendChild(img);
+
+    return article;
+  }
+  return {
+    name,
+    picture,
+    getUserCardDOM,
+    getUserCardTxTDOM,
+    getUserCardImgDOM,
+  };
 }
