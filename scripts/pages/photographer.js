@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const photographeId = urlParams.get("id");
-
+export { photographeId };
 console.log(photographeId);
 
 async function getPhotographer(photographeId) {
@@ -18,10 +18,8 @@ async function getPhotographer(photographeId) {
 }
 
 async function displayData(photographer) {
-  console.log(photographer);
   const photographersSection = document.querySelector(".photograph-header");
   const photographerModel = photographerFactory(photographer);
-  console.log(photographerModel);
   const userCardDOM = photographerModel.getUserCardTxTDOM();
   photographersSection.appendChild(userCardDOM);
   const userImgCardDOM = photographerModel.getUserCardImgDOM();
@@ -32,7 +30,6 @@ async function init() {
   try {
     // Récupère les datas des photographes
     const photographer = await getPhotographer(photographeId);
-    console.log(photographer);
     displayData(photographer);
   } catch (error) {
     console.error(error);
