@@ -1,3 +1,5 @@
+
+
 #contact_modal {
     display: none;
 }
@@ -58,7 +60,7 @@
 .medias{
     
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr  1fr;
         gap: 70px;
         margin-top: 100px;
         width: 100%;
@@ -68,10 +70,18 @@
 .medias img{
     width: 300px;
     height: 300px;
+    object-fit: cover;
 }
 
 
-
+.medias video {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.medias span {
+   content: "";
+}
 
 
 .modal {

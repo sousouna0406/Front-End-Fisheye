@@ -1,37 +1,37 @@
-/*function getName() {
-  const response = fetch("../data/photographers.json");
-  if (!response.ok) {
-    throw new Error("Erreur lors de la récupération des données.");
-  }
-  const photographersJson = response.json();
-  console.log(photographersJson);
-  const nameArray = photographersJson.photographers.find(
-    (photographers) => photographers.name
-  );
-  console.log(nameArray.name);
-  const name = nameArray.name;
-  console.log(name);
-  return name;
-  getName();
-}*/
-
 function mediaFactory(data) {
-  const { date, id, likes, photographerId, price, title, image, video, name } =
-    data;
+  const { date, id, likes, photographerId, price, title, image, video } = data;
+  const mediaPath = `assets/images/${photographerId}/`;
+  const mediaUrl = `${mediaPath}${video || image}`;
+  const isVideo = Boolean(video);
 
-  const picture = `assets/images/${image}`;
-  const videoMedia = `assets/images/${video}`;
   function getUserMediaCardDOM() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", `Article `);
 
-    const img = document.createElement("img");
-    img.setAttribute("src", picture);
-    img.setAttribute("alt", `Photo de profil de ${name}.`);
+    const mediaElement = isVideo
+      ? document.createElement("video")
+      : document.createElement("img");
+    mediaElement.setAttribute("src", mediaUrl);
+    mediaElement.setAttribute("alt", `Photo de profil de ${name}.`);
 
-    article.appendChild(img);
+    if (isVideo) {
+      mediaElement.setAttribute("controls", "");
+    }
+
+    const titre = document.createElement("h3");
+    titre.textContent = title;
+    titre.setAttribute("aria-label", "titre");
+
+    const like = document.createElement("span");
+    like.textContent = likes;
+    like.setAttribute("aria-label", "like");
+
+    article.appendChild(mediaElement);
+    article.appendChild(titre);
+    article.appendChild(like);
 
     return article;
   }
-  return { picture, videoMedia, getUserMediaCardDOM };
+
+  return { mediaUrl, getUserMediaCardDOM };
 }

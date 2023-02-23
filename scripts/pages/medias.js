@@ -14,19 +14,27 @@ async function getMedia(photographeId) {
     (media) => media.photographerId == photographeId
   );
   console.log(media);
+  /*const videos = media.filter((media) => media.video);
+  console.log(videos);*/
   return media;
 }
 
 async function displayData(photographer) {
   const photographersSection = document.querySelector(".medias");
   console.log(photographer);
+
   photographer.forEach((media) => {
     console.log(media);
-
     const photographerModel = mediaFactory(media);
     const userCardDOM = photographerModel.getUserMediaCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
+  /* photographer.videos.forEach((video) => {
+    console.log(video);
+    const photographerModel = mediaFactory(video);
+    const videoCardDOM = photographerModel.getUserMediaCardDOM();
+    photographersSection.appendChild(videoCardDOM);
+  });*/
 }
 
 async function init() {
