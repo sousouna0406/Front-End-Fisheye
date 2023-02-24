@@ -6,7 +6,7 @@ console.log(photographeId);
 async function getPhotographer(photographeId) {
   const response = await fetch("../data/photographers.json");
   if (!response.ok) {
-    console.log("pas de reponse");
+    throw new Error("Erreur lors de la récupération des données.");
   }
   const photographersJson = await response.json();
   const photographer = photographersJson.photographers.find(
@@ -18,12 +18,15 @@ async function getPhotographer(photographeId) {
 }
 
 async function displayData(photographer) {
+  console.log(photographer);
   const photographersSection = document.querySelector(".photograph-header");
   const photographerModel = photographerFactory(photographer);
   const userCardDOM = photographerModel.getUserCardTxTDOM();
   photographersSection.appendChild(userCardDOM);
   const userImgCardDOM = photographerModel.getUserCardImgDOM();
   photographersSection.appendChild(userImgCardDOM);
+  const photoPrice = photographer.price;
+  console.log(photoPrice);
 }
 
 async function init() {

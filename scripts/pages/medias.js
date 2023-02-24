@@ -9,34 +9,33 @@ async function getMedia(photographeId) {
   }
   const photographersJson = await response.json();
   console.log(photographersJson);
-
+  const photographer = photographersJson.photographers.filter(
+    (photographers) => photographers.id == photographeId
+  );
+  console.log(photographer);
   const media = photographersJson.media.filter(
     (media) => media.photographerId == photographeId
   );
   console.log(media);
-  /*const videos = media.filter((media) => media.video);
-  console.log(videos);*/
-  return media;
+  return { media, photographer };
 }
 
 async function displayData(photographer) {
   const photographersSection = document.querySelector(".medias");
   console.log(photographer);
 
-  photographer.forEach((media) => {
+  photographer.media.forEach((media) => {
     console.log(media);
     const photographerModel = mediaFactory(media);
     const userCardDOM = photographerModel.getUserMediaCardDOM();
     photographersSection.appendChild(userCardDOM);
-    const encart = photographerModel.encart();
-    photographersSection.appendChild(encart);
   });
-  /* photographer.videos.forEach((video) => {
-    console.log(video);
-    const photographerModel = mediaFactory(video);
-    const videoCardDOM = photographerModel.getUserMediaCardDOM();
-    photographersSection.appendChild(videoCardDOM);
-  });*/
+  photographer.photographer.forEach((price) => {
+    console.log(price);
+    const encartModel = mediaFactory(price);
+    const encartCardDOM = encartModel.encart();
+    photographersSection.appendChild(encartCardDOM);
+  });
 }
 
 async function init() {

@@ -1,5 +1,6 @@
 function mediaFactory(data) {
-  const { date, id, likes, photographerId, price, title, image, video } = data;
+  const { date, id, likes, photographerId, price, title, image, video, name } =
+    data;
   const mediaPath = `assets/images/${photographerId}/`;
   const mediaUrl = `${mediaPath}${video || image}`;
   const isVideo = Boolean(video);
@@ -37,7 +38,7 @@ function mediaFactory(data) {
 
     const spanEncart = document.createElement("span");
     spanEncart.textContent = `${price}€ / Jour`;
-    spanEncart.setAttribute("aria-label", `Prix : ${price}/Jour`);
+    spanEncart.setAttribute("aria-label", `Prix : ${price}€/Jour`);
 
     divEncart.appendChild(spanEncart);
 

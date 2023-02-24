@@ -1,19 +1,18 @@
 async function getPhotographers() {
   const response = await fetch("../data/photographers.json");
   if (!response.ok) {
-    console.log("pas de reponse");
+    throw new Error("Erreur lors de la récupération des données.");
   }
   const photographersJson = await response.json();
   console.log(photographersJson);
-  console.log(photographersJson.photographers);
-  console.log(photographersJson.media);
-
   return photographersJson;
 }
 
 async function displayData(photographers) {
+  console.log(photographers);
   const photographersSection = document.querySelector(".photographer_section");
   photographers.forEach((photographer) => {
+    console.log(photographer);
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
