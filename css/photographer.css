@@ -18,8 +18,10 @@
 .photograph-header article h2 {
     color: #D3573C;
     font-weight: lighter;
-    font-size: 3rem;
+    font-size: 3.2rem;
     margin: 0;
+    position: relative;
+    right: 2px;
    
 }
 .photograph-header article h3 {
@@ -27,14 +29,14 @@
     color: #901c1cbd;
     font-size: 28px;
     font-weight: lighter;
-    margin-top: 14px;
+    
 }
 .photograph-header article p{
     margin: 1px;
     font-size: 18px;
     color: rgba(0, 0, 0, 0.481);
     font-weight: lighter;
-    margin-top: 44px;
+    margin-top: 24px;
 }
 .photograph-header article img {
     width: 200px;
@@ -82,7 +84,8 @@
     border-radius: 5px;
 }
 .medias h3 {
-    font-size: 15px;
+    font-size: 20px;
+    color :#901C1C
 }
 .medias div {
     display: flex;
@@ -93,9 +96,9 @@
     right: 2.2rem;
     width: 23rem;
     height: 2.5rem;
-    background-color: #cf806e;
+    background-color: #da8774;
     padding: 10px;
-    border: #cf7f6e solid;
+    border: #da8774 solid;
     border-radius: 5px;
   }
   .medias div span {
@@ -113,6 +116,9 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position: fixed;
+    bottom: 51%;
+    left: 22%;
 }
 
 .modal header {
@@ -156,3 +162,32 @@ form input {
     border: none;
     border-radius: 5px;
 }
+@media screen and (max-width :1180px)  {
+    .photograph-header{
+        background-color: #FAFAFA;
+        margin: 0 100px;
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        justify-content: center;
+        height: auto;
+    }
+    .photograph-header article img {
+        width: 350px;
+        height: 350px;
+        
+    }
+    .photograph-header article {
+        margin: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .contact_button{
+        
+        position: initial;
+        margin: 30px;
+        
+    }
+  }

@@ -28,7 +28,6 @@ function mediaFactory(data) {
 
     article.appendChild(mediaElement);
     article.appendChild(titre);
-    article.appendChild(like);
 
     return article;
   }

@@ -78,4 +78,20 @@ span {
     height: 310px;
     position: absolute;
 }
-
+@media screen and (max-width :1000px)  {
+    .photographer_section {
+       
+        grid-template-columns: 1fr 1fr;
+        
+    }
+    .photographer_section article a {
+        
+        width: 325px;
+        height: 452px;
+        
+    }
+    .photographer_section article img {
+        height: 350px;
+        width: 350px;
+    }
+  }
