@@ -28,6 +28,8 @@ async function displayData(photographer) {
     const photographerModel = mediaFactory(media);
     const userCardDOM = photographerModel.getUserMediaCardDOM();
     photographersSection.appendChild(userCardDOM);
+    const encart = photographerModel.encart();
+    photographersSection.appendChild(encart);
   });
   /* photographer.videos.forEach((video) => {
     console.log(video);

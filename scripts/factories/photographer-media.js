@@ -32,6 +32,18 @@ function mediaFactory(data) {
 
     return article;
   }
+  function encart() {
+    const divEncart = document.createElement("div");
+    divEncart.setAttribute("aria-label", `div : Profil de ${name}`);
 
-  return { mediaUrl, getUserMediaCardDOM };
+    const spanEncart = document.createElement("span");
+    spanEncart.textContent = `${price}€ / Jour`;
+    spanEncart.setAttribute("aria-label", `Prix : ${price}/Jour`);
+
+    divEncart.appendChild(spanEncart);
+
+    return divEncart;
+  }
+
+  return { mediaUrl, getUserMediaCardDOM, encart };
 }
