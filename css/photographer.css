@@ -4,6 +4,7 @@
     display: none;
 }
 
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -60,7 +61,7 @@
     left: 44%;
 }
 .medias{
-    
+    margin-bottom: 7rem;
     display: flex;
     gap: 92px;
         margin-top: 100px;
@@ -68,6 +69,7 @@
         justify-items: center;
         flex-wrap: wrap;
         justify-content: center;
+
 }
 .medias img{
     width: 350px;
@@ -117,26 +119,32 @@
     padding: 35px;
     margin: auto;
     position: fixed;
-    top: 5%;
+    top: 3%;
     left: 32%;
 }
 .blur{
-    filter: blur(1.2rem);
+    opacity: 0.7;
+    
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
+    display: flex;
+    align-items: flex-start;
 }
 
 .modal header img {
     cursor: pointer;
+    width: 30px;
 }
 
 .modal header h2 {
-    font-size: 35px;
+    font-size: 38px;
     font-weight: normal;
     text-align: start;
+    position: relative;
+    bottom: 38px;
 }
 
 form {
@@ -149,6 +157,9 @@ form {
     width: 100%;
     border-radius: 5px;
     border: none;
+    font-size: 16px;
+    color: #312E2E;
+    outline: none;
 }
 .modal_button{
     font-size: 20px;
@@ -182,6 +193,16 @@ form input {
     height: 48px;
     border: none;
     border-radius: 5px;
+    outline: none;
+    font-size: 17px;
+    color: #312E2E;
+}
+@media screen and (max-height :600px)  {
+.modal{
+    height: 500px;
+    overflow-y: scroll;
+   
+}
 }
 @media screen and (max-width :1180px)  {
     .photograph-header{
@@ -210,5 +231,24 @@ form input {
         position: initial;
         margin: 30px;
         
+    }
+    .modal {
+        border-radius: 5px;
+        background-color: #DB8876;
+        width: 51%;
+        /* height: 50%; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 35px;
+        margin: auto;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    form input{
+        font-size: 28px;
     }
   }

@@ -3,6 +3,10 @@ async function closeModal() {
   modal.style.display = "none";
   const main = document.getElementById("main");
   main.classList.remove("blur");
+  const header = document.querySelector("header");
+  header.classList.remove("blur");
+  const form = modal.querySelector("form");
+  form.reset();
 }
 
 async function displayModal() {
@@ -13,11 +17,13 @@ async function displayModal() {
   modal.style.display = "block";
   const main = document.getElementById("main");
   main.classList.add("blur");
+  const header = document.querySelector("header");
+  header.classList.add("blur");
 
   try {
     const response = await fetch("../data/photographers.json");
     const data = await response.json();
-    console.log("Data reçu:", data);
+    console.log("Data received:", data);
     const photographer = data.photographers.find(
       (photographer) => photographer.id == photographeId
     );
