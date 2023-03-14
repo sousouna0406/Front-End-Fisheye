@@ -1,3 +1,5 @@
+console.log("photographer.js loaded");
+
 const urlParams = new URLSearchParams(window.location.search);
 const photographeId = urlParams.get("id");
 export { photographeId };
@@ -25,8 +27,6 @@ async function displayData(photographer) {
   photographersSection.appendChild(userCardDOM);
   const userImgCardDOM = photographerModel.getUserCardImgDOM();
   photographersSection.appendChild(userImgCardDOM);
-  const photoPrice = photographer.price;
-  console.log(photoPrice);
 }
 
 async function init() {

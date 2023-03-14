@@ -1,13 +1,14 @@
 function mediaFactory(data) {
   const { date, id, likes, photographerId, price, title, image, video, name } =
     data;
+  console.log(name);
   const mediaPath = `assets/images/${photographerId}/`;
   const mediaUrl = `${mediaPath}${video || image}`;
   const isVideo = Boolean(video);
 
   function getUserMediaCardDOM() {
     const article = document.createElement("article");
-    article.setAttribute("aria-label", `Article `);
+    article.setAttribute("aria-label", `Photo de profil de ${name} `);
 
     const mediaElement = isVideo
       ? document.createElement("video")

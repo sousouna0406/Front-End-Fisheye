@@ -3,7 +3,7 @@ import { photographeId } from "../pages/photographer.js";
 console.log(photographeId);
 
 async function getMedia(photographeId) {
-  const response = await fetch("../data/photographers.json");
+  const response = await fetch("../data/photographers.json"); // ajuster le chemin d'accès
   if (!response.ok) {
     throw new Error("Erreur lors de la récupération des données.");
   }

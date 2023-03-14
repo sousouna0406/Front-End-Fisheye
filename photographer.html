@@ -11,7 +11,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
@@ -22,25 +22,70 @@
       </div>
       <div class="medias"></div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 class="contact">Contactez-moi</h2>
+          <img
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+            alt="Fermer la fenêtre de contact"
+          />
         </header>
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
+        <form class="form" role="form" aria-label="Formulaire de contact">
+          <div class="form-contact">
+            <label for="first-name" role="label">Prénom</label>
+            <input
+              type="text"
+              id="first-name"
+              role="textbox"
+              aria-required="true"
+              aria-label="Entrez votre prénom"
+            />
+            <label for="last-name" role="label">Nom</label>
+            <input
+              type="text"
+              id="last-name"
+              role="textbox"
+              aria-required="true"
+              aria-label="Entrez votre nom"
+            />
+            <label for="e-mail" role="label">E-mail</label>
+            <input
+              type="text"
+              id="e-mail"
+              role="textbox"
+              aria-required="true"
+              aria-label="Entrez votre adresse email"
+            />
+            <label for="textarea" role="label">Votre message</label>
+            <textarea
+              name="message"
+              id="textarea"
+              role="textbox"
+              aria-required="true"
+              aria-label="Entrez votre message"
+              cols="30"
+              rows="10"
+              placeholder="Entrez votre message"
+            ></textarea>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button
+            class="modal_button"
+            role="button"
+            aria-label="Envoyer le formulaire"
+          >
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
+    <script src="scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
     <script src="scripts/factories/photographer-media.js"></script>
     <script src="scripts/factories/photographer.js"></script>
     <script type="module" src="scripts/pages/medias.js"></script>
-    <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+
+    <script src="scripts/factories/modal-contact.js"></script>
   </body>
 </html>
