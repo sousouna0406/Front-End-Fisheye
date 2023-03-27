@@ -8,6 +8,10 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/6abe251917.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -20,7 +24,7 @@
           Contactez-moi
         </button>
       </div>
-      <div class="medias"></div>
+      <div class="medias" onclick="displayLightbox()"></div>
     </main>
     <div id="contact_modal" role="dialog">
       <div class="modal">
@@ -80,6 +84,12 @@
         </form>
       </div>
     </div>
+
+    <aside id="lightbox">
+      <div class="lightbox-content"></div>
+    </aside>
+    <script src="scripts/factories/lightbox-factory.js"></script>
+    <script src="scripts/utils/lightbox.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script src="scripts/factories/photographer-media.js"></script>

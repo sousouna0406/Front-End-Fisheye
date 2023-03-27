@@ -5,6 +5,7 @@
 }
 
 
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -197,14 +198,76 @@ form input {
     font-size: 17px;
     color: #312E2E;
 }
+#lightbox{
+    border-radius: 5px;
+    background-color: rgb(255 255 255 / 90%);
+    width: 78%;
+    height: 87%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+ 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.lightbox-element{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.lightbox-element img{
+    width: 58rem;
+    max-width: 61rem;
+    height: 43rem;   
+}
+.lightbox-element video{
+    width: 58rem;
+    max-width: 61rem;
+    height: 43rem;  
+}
+.lightbox-element .close {
+    top: 1rem;
+    right: 2rem;
+    position: absolute;
+    font-size: 56px;
+    color: #901C1C;
+}
+.lightbox-element p{
+    font-size: 26px;
+    position: absolute;
+    top: 45rem;
+    left: 8rem;
+    color: #901C1C;
+
+}
+.lightbox-element .right{
+    font-size: 4rem;
+    color: #901C1C;
+}
+.lightbox-element .left {
+    color: #901C1C;
+    font-size: 4rem;
+}
+@media screen and  (min-width :1280px){
+    .lightbox-element p {
+       /* left: 4.5rem;*/
+     }
+}
 @media screen and (max-height :600px)  {
 .modal{
     height: 500px;
     overflow-y: scroll;
    
 }
+
 }
-@media screen and (max-width :1180px)  {
+@media screen and (max-width :1100px)  {
     .photograph-header{
         background-color: #FAFAFA;
         margin: 0 100px;
@@ -250,5 +313,21 @@ form input {
     }
     form input{
         font-size: 28px;
+    }
+    .lightbox-element img {
+        width: 39rem;
+        max-width: 61rem;
+        height: 43rem;
+    }
+    .lightbox-element video{
+        width: 39rem;
+        max-width: 61rem;
+    
+    }
+    #lightbox{
+        height: auto;
+    }
+    .lightbox-element p {
+       left: 6rem;
     }
   }

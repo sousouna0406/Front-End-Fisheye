@@ -14,10 +14,10 @@ function mediaFactory(data) {
       ? document.createElement("video")
       : document.createElement("img");
     mediaElement.setAttribute("src", mediaUrl);
-    mediaElement.setAttribute("alt", `Photo de profil de ${name}.`);
-
+    mediaElement.setAttribute("alt", isVideo ? `Video` : `Photo`);
+    mediaElement.classList.add("lightbox-trigger");
     if (isVideo) {
-      mediaElement.setAttribute("controls", "");
+      mediaElement.allowfullscreen = true;
     }
 
     const titre = document.createElement("h3");
