@@ -1,10 +1,13 @@
 function mediaFactory(data) {
   const { date, id, likes, photographerId, price, title, image, video, name } =
     data;
-  console.log(name);
+
   const mediaPath = `assets/images/${photographerId}/`;
   const mediaUrl = `${mediaPath}${video || image}`;
   const isVideo = Boolean(video);
+
+  let likeCount = likes;
+  let liked = false;
 
   function getUserMediaCardDOM() {
     const article = document.createElement("article");
@@ -25,16 +28,35 @@ function mediaFactory(data) {
     titre.setAttribute("aria-label", "titre");
 
     const like = document.createElement("span");
-    like.textContent = likes;
-    like.setAttribute("aria-label", "like");
+    console.log(likes);
+    like.classList.add("heart-likes");
+    like.textContent = likeCount + " ";
+    like.innerHTML += '<i class="fa-regular fa-heart"></i>';
+    like.addEventListener("click", () => {
+      if (liked) {
+        liked = false;
+        likeCount--;
+        like.textContent = likeCount + " ";
+        like.innerHTML += '<i class="fa-regular fa-heart"></i>';
+      } else {
+        liked = true;
+        likeCount++;
+        like.textContent = likeCount + " ";
+        like.innerHTML +=
+          '<i class="fa-sharp fa-solid fa-heart" aria-hidden="true"></i>';
+      }
+    });
 
     article.appendChild(mediaElement);
     article.appendChild(titre);
+    article.appendChild(like);
 
     return article;
   }
+
   function encart() {
     const divEncart = document.createElement("div");
+    divEncart.classList.add("encart");
     divEncart.setAttribute("aria-label", `div : Profil de ${name}`);
 
     const spanEncart = document.createElement("span");

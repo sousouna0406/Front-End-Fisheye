@@ -10,6 +10,10 @@ async function displayLightbox() {
     const photographeId = urlParams.get("id");
     const lightbox = document.getElementById("lightbox");
     lightbox.style.display = "block";
+    const main = document.getElementById("main");
+    main.classList.add("blur");
+    const header = document.querySelector("header");
+    header.classList.add("blur");
 
     try {
       const response = await fetch("../data/photographers.json");
@@ -39,4 +43,8 @@ async function displayLightbox() {
 async function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
+  const main = document.getElementById("main");
+  main.classList.remove("blur");
+  const header = document.querySelector("header");
+  header.classList.remove("blur");
 }

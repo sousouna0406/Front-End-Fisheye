@@ -24,6 +24,22 @@ async function displayData(photographer) {
   const photographersSection = document.querySelector(".medias");
   console.log(photographer);
 
+  let likesArray = [];
+
+  for (let i = 0; i < photographer.media.length; i++) {
+    const mediaLikes = photographer.media[i].likes;
+    likesArray.push(mediaLikes);
+  }
+
+  let totalLikes = likesArray.reduce((acc, cur) => acc + cur, 0);
+
+  const totalLikesElement = document.createElement("p");
+  totalLikesElement.classList.add("total-likes");
+  totalLikesElement.textContent = `${totalLikes} `;
+  totalLikesElement.innerHTML += `<i class="fa-solid fa-heart"></i>`;
+
+  main.appendChild(totalLikesElement);
+
   photographer.media.forEach((media) => {
     console.log(media);
     const photographerModel = mediaFactory(media);
