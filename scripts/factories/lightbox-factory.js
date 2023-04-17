@@ -1,8 +1,4 @@
 function lightboxFactory(media, index) {
-  if (index < 0 || index >= media.length) {
-    console.error(`Invalid index ${index} for media array.`);
-    return;
-  }
   const { image, video, title, photographerId } = media[index];
   const lightboxContent = document.querySelector(".lightbox-content");
   const lightboxElement = document.createElement("div");

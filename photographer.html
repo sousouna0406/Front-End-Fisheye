@@ -24,6 +24,22 @@
           Contactez-moi
         </button>
       </div>
+      <div class="nav">
+        <label for="sort-select">Trier par </label>
+        <div class="sort-select">
+          <div class="span">
+            <span>Popularité <i class="fa-solid fa-caret-down"></i></span>
+          </div>
+
+          <ul id="sort-select-ul">
+            <li id="popularity-option" class="active" data-value="popularity">
+              Popularité <i class="fas fa-caret-up"></i>
+            </li>
+            <li id="date-option" class="active" data-value="date">Date</li>
+            <li id="title-option" class="active" data-value="title">Titre</li>
+          </ul>
+        </div>
+      </div>
       <div class="medias" onclick="displayLightbox()"></div>
     </main>
     <div id="contact_modal" role="dialog">

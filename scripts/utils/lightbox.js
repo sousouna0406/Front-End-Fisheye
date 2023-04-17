@@ -1,13 +1,16 @@
+let sortCriteria;
+
 async function displayLightbox() {
   const mediaElements = document.querySelectorAll(".lightbox-trigger");
-  const selectElement = document.getElementById("sort-select");
+  const selectElement = document.getElementById("sort-select-ul");
+
   mediaElements.forEach((element) => {
     element.addEventListener("click", openLightbox);
   });
 
-  let sortCriteria = selectElement.value;
-  selectElement.addEventListener("change", (event) => {
-    sortCriteria = event.target.value;
+  selectElement.addEventListener("click", (event) => {
+    sortCriteria = event.target.getAttribute("data-value");
+    console.log(sortCriteria);
   });
 
   async function openLightbox(event) {
@@ -29,17 +32,17 @@ async function displayLightbox() {
 
       if (media) {
         const mediaIndex = Array.from(mediaElements).indexOf(event.target);
-        lightboxFactory(sortMedia(sortCriteria, media), mediaIndex);
+        let sortedMedia = media;
+        if (sortCriteria) {
+          sortedMedia = sortMedia(sortCriteria, media);
+        }
+        lightboxFactory(sortedMedia, mediaIndex);
       } else {
         console.error("Photographer medias not found");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-
-    mediaElements.forEach((element) => {
-      element.removeEventListener("click", openLightbox);
-    });
   }
 }
 
@@ -61,7 +64,7 @@ function sortMedia(sortCriteria, mediaArray) {
       mediaArray.sort((a, b) => b.likes - a.likes);
       break;
     case "date":
-      mediaArray.sort((a, b) => new Date(a.date) - new Date(b.date));
+      mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
       break;
     case "title":
       mediaArray.sort((a, b) => a.title.localeCompare(b.title));

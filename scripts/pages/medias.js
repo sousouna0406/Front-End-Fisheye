@@ -1,4 +1,5 @@
 console.log("ici");
+
 import { photographeId } from "../pages/photographer.js";
 console.log(photographeId);
 
@@ -40,14 +41,14 @@ async function displayData(photographer) {
 
   main.appendChild(totalLikesElement);
   console.log(photographer.media);
-
-  function sortMedia(criteria, mediaArray) {
+  // Fonction pour trier les médias
+  /*function sortMedia(criteria, mediaArray) {
     switch (criteria) {
       case "popularity":
         mediaArray.sort((a, b) => b.likes - a.likes); // Tri par popularité décroissante
         break;
       case "date":
-        mediaArray.sort((a, b) => new Date(a.date) - new Date(b.date)); // Tri par date croissante
+        mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date)); // Tri par date décroissante
         break;
       case "title":
         mediaArray.sort((a, b) => a.title.localeCompare(b.title)); // Tri par titre croissant
@@ -60,23 +61,110 @@ async function displayData(photographer) {
     return mediaArray;
   }
 
+  // Récupérer les éléments du DOM
+  const sortDropdown = document.getElementById("sort-select-ul");
+  const popularityOption = document.getElementById("popularity-option");
+  const dateOption = document.getElementById("date-option");
+  const titleOption = document.getElementById("title-option");
+
+  // Fonction pour trier et afficher les médias
+  function getSortedMediaArray(selectedValue, mediaArray) {
+    let sortedMediaArray;
+
+    if (
+      selectedValue === "popularity" ||
+      selectedValue === "date" ||
+      selectedValue === "title"
+    ) {
+      sortedMediaArray = sortMedia(selectedValue, mediaArray, photographer);
+    }
+
+    photographersSection.innerHTML = ""; // Efface tous les enfants existants du <main>
+
+    // Créer les éléments DOM et les ajouter à la page
+    sortedMediaArray.forEach((media) => {
+      const photographerModel = mediaFactory(media);
+      const userCardDOM = photographerModel.getUserMediaCardDOM();
+      photographersSection.appendChild(userCardDOM);
+    });
+    photographer.photographer.forEach((price) => {
+      console.log(price);
+      const encartModel = mediaFactory(price);
+      const encartCardDOM = encartModel.encart();
+      photographersSection.appendChild(encartCardDOM);
+    });
+
+    return sortedMediaArray;
+  }
+  photographer.media.forEach((media) => {
+    console.log(media);
+    const photographerModel = mediaFactory(media);
+    const userCardDOM = photographerModel.getUserMediaCardDOM();
+    photographersSection.appendChild(userCardDOM);
+  });
+  photographer.photographer.forEach((price) => {
+    console.log(price);
+    const encartModel = mediaFactory(price);
+    const encartCardDOM = encartModel.encart();
+    photographersSection.appendChild(encartCardDOM);
+  });
+
+  sortDropdown.value = "popularity";
+  const sortedMediaArray = getSortedMediaArray(
+    "popularity",
+    photographer.media
+  );
+  // Écouter les événements de changement sur la liste déroulante
+  sortDropdown.addEventListener("click", (event) => {
+    const selectedValue = event.target.value;
+    const sortedMediaArray = getSortedMediaArray(
+      selectedValue,
+      photographer.media
+    );
+    console.log("Médias triés : ", sortedMediaArray);
+  });
+
+  function sortMedia(criteria, mediaArray) {
+    switch (criteria) {
+      case "popularity":
+        mediaArray.sort((a, b) => b.likes - a.likes); // Tri par popularité décroissante
+        break;
+      case "date":
+        mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date)); // Tri par date décroissante
+        break;
+      case "title":
+        mediaArray.sort((a, b) => a.title.localeCompare(b.title)); // Tri par titre croissant
+        break;
+      default:
+        console.error("Invalid sort criteria");
+        return;
+    }
+
+    return mediaArray;
+  }
+  const localSortDropdown = document.querySelector(".nav");
   const sortDropdown = document.createElement("select");
   sortDropdown.id = "sort-select";
+
+  localSortDropdown.appendChild(sortDropdown);
 
   const popularityOption = document.createElement("option");
   popularityOption.text = "Popularité";
   popularityOption.value = "popularity";
-  sortDropdown.add(popularityOption);
+  popularityOption.classList.add("select-option");
+  sortDropdown.appendChild(popularityOption);
 
   const dateOption = document.createElement("option");
   dateOption.text = "Date";
   dateOption.value = "date";
-  sortDropdown.add(dateOption);
+  dateOption.classList.add("select-option");
+  sortDropdown.appendChild(dateOption);
 
   const titleOption = document.createElement("option");
   titleOption.text = "Titre";
   titleOption.value = "title";
-  sortDropdown.add(titleOption);
+  titleOption.classList.add("select-option");
+  sortDropdown.appendChild(titleOption);
 
   function getSortedMediaArray(selectedValue, mediaArray) {
     let sortedMediaArray;
@@ -135,7 +223,72 @@ async function displayData(photographer) {
   });
 
   console.log("Médias triés : ", sortedMediaArray);
-  main.appendChild(sortDropdown);
+  main.appendChild(localSortDropdown);
+*/
+  function getSortedMediaArray(selectedValue, mediaArray) {
+    let sortedMediaArray;
+
+    switch (selectedValue) {
+      case "popularity":
+        sortedMediaArray = sortMedia("popularity", mediaArray);
+        break;
+      case "date":
+        sortedMediaArray = sortMedia("date", mediaArray);
+        break;
+      case "title":
+        sortedMediaArray = sortMedia("title", mediaArray);
+        break;
+      default:
+        console.error("Invalid sort criteria");
+        return;
+    }
+
+    photographersSection.innerHTML = ""; // Efface tous les enfants existants du <main>
+
+    // Créer les éléments DOM et les ajouter à la page
+    sortedMediaArray.forEach((media) => {
+      const photographerModel = mediaFactory(media);
+      const userCardDOM = photographerModel.getUserMediaCardDOM();
+      photographersSection.appendChild(userCardDOM);
+    });
+
+    // Itération sur chaque élément de prix du photographe
+    photographer.photographer.forEach((price) => {
+      console.log(price);
+      const encartModel = mediaFactory(price);
+      const encartCardDOM = encartModel.encart();
+      photographersSection.appendChild(encartCardDOM);
+    });
+
+    return sortedMediaArray;
+  }
+
+  document
+    .getElementById("sort-select-ul")
+    .addEventListener("click", (event) => {
+      if (event.target.tagName === "LI") {
+        const selectedValue = event.target.getAttribute("data-value");
+        const sortedMediaArray = getSortedMediaArray(
+          selectedValue,
+          photographer.media
+        );
+        console.log("Médias triés : ", sortedMediaArray);
+      }
+    });
+  // Créer les éléments DOM et les ajouter à la page
+  photographer.media.forEach((media) => {
+    const photographerModel = mediaFactory(media);
+    const userCardDOM = photographerModel.getUserMediaCardDOM();
+    photographersSection.appendChild(userCardDOM);
+  });
+
+  // Itération sur chaque élément de prix du photographe
+  photographer.photographer.forEach((price) => {
+    console.log(price);
+    const encartModel = mediaFactory(price);
+    const encartCardDOM = encartModel.encart();
+    photographersSection.appendChild(encartCardDOM);
+  });
 }
 
 async function init() {

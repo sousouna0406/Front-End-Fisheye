@@ -4,21 +4,86 @@
     display: none;
 }
 
-select{
-  
-        width: 10rem;
-        height: 4rem;
-        position: relative;
-        bottom: 118rem;
-        left: 6rem;
-        display: flex;
-        text-align: center;
-        align-content: center;
-        font-size: 21px;
-        background-color: #901C1C;
-        color: white;
-        border-radius: 6px;
+
+.nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 5rem;
     
+}
+.nav label {
+    font-size: 24px;
+    position: relative;
+    left: 6rem;
+}
+  
+  .sort-select {
+    position: relative;
+  }
+  .nav span{
+    color: #fff;
+    font-size: 24px;
+  } 
+  .span {
+    display: inline-block;
+    padding: 18px;
+    background-color: #901C1C;
+    border: 1px solid #901C1C;
+    cursor: pointer;
+    position: relative;
+    left: 8rem;
+    border-radius: 5px;
+  }
+  
+  .span:hover {
+    background-color: #901c1c8b;
+  }
+  
+  #sort-select-ul {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #901C1C;
+    border: 1px solid#901C1C;
+    color: #fff;
+  }
+  
+  #sort-select-ul li {
+    list-style: none;
+    padding: 18px;
+    cursor: pointer;
+    background-color: #901C1C;
+    color: #fff;
+    font-size: 24px;
+    width: 9.3rem;
+}
+  
+  .sort-select:hover #sort-select-ul {
+    visibility: visible;
+    background-color: #e0e0e0;
+    position: absolute;
+    left: 8rem;
+    top: 0rem;
+    border-radius: 5px;
+  }
+  
+  .active:hover {
+  background-color: #901c1c36;;
+    color: #fff;
+  }
+  .sort-select .fa-caret-down:before {
+    content: '\f0d7'; 
+    margin-left: 15px; 
+  }
+  
+ 
+  .fa-caret-up:before {
+    content: "\f0d8";
+    margin-left: 15px;
 }
 
 .photograph-header {
