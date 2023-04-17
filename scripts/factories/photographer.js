@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   console.log(name);
@@ -15,22 +16,27 @@ function photographerFactory(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `Photo de profil de ${name}.`);
+    img.setAttribute("tabindex", "0");
 
     const h2 = document.createElement("h2");
     h2.textContent = name;
     h2.setAttribute("aria-label", `Nom : ${name}`);
+    h2.setAttribute("tabindex", "0");
 
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
     h3.setAttribute("aria-label", `Lieu : ${city}, ${country}`);
+    h3.setAttribute("tabindex", "0");
 
     const pTagline = document.createElement("p");
     pTagline.textContent = tagline;
     pTagline.setAttribute("aria-label", `Slogant : "${tagline}"`);
+    pTagline.setAttribute("tabindex", "0");
 
     const spanPrice = document.createElement("span");
     spanPrice.textContent = `${price}€/Jour`;
     spanPrice.setAttribute("aria-label", `Prix : ${price}/Jour`);
+    spanPrice.setAttribute("tabindex", "0");
 
     article.appendChild(link);
     article.appendChild(img);
@@ -47,14 +53,17 @@ function photographerFactory(data) {
     const h2 = document.createElement("h2");
     h2.textContent = name;
     h2.setAttribute("aria-label", `Nom : ${name}`);
+    h2.setAttribute("tabindex", "0");
 
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
     h3.setAttribute("aria-label", `Lieu : ${city}, ${country}`);
+    h3.setAttribute("tabindex", "0");
 
     const pTagline = document.createElement("p");
     pTagline.textContent = tagline;
     pTagline.setAttribute("aria-label", `Slogant : "${tagline}"`);
+    pTagline.setAttribute("tabindex", "0");
 
     article.appendChild(h2);
     article.appendChild(h3);
@@ -68,6 +77,7 @@ function photographerFactory(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `Photo de profil de ${name}.`);
+    img.setAttribute("tabindex", "0");
 
     article.appendChild(img);
 

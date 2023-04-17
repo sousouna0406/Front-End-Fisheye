@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function lightboxFactory(media, index) {
   const { image, video, title, photographerId } = media[index];
   const lightboxContent = document.querySelector(".lightbox-content");
@@ -13,23 +14,28 @@ function lightboxFactory(media, index) {
     : document.createElement("img");
   mediaElement.src = mediaUrl;
   mediaElement.alt = isVideo ? `Video` : `Photo`;
+  mediaElement.setAttribute("tabindex", "0");
   mediaElement.classList.add("lightbox-trigger");
   if (isVideo) {
     mediaElement.controls = true;
   }
 
   const titleParagraphe = document.createElement("p");
+  titleParagraphe.setAttribute("tabindex", "0");
   titleParagraphe.textContent = title;
   lightboxElement.appendChild(titleParagraphe);
 
   const closeBtn = document.createElement("span");
+  closeBtn.setAttribute("tabindex", "0");
   closeBtn.classList.add("close");
+  // eslint-disable-next-line no-undef
   closeBtn.onclick = closeLightbox;
   const xIcon = document.createElement("i");
   xIcon.classList.add("fa-solid", "fa-xmark");
   closeBtn.appendChild(xIcon);
 
   const leftBtn = document.createElement("span");
+  leftBtn.setAttribute("tabindex", "0");
   leftBtn.classList.add("left");
   leftBtn.onclick = () => prevMedia(media, index);
   const leftChevronIcon = document.createElement("i");
@@ -38,6 +44,7 @@ function lightboxFactory(media, index) {
 
   const rightBtn = document.createElement("span");
   rightBtn.classList.add("right");
+  rightBtn.setAttribute("tabindex", "0");
   rightBtn.onclick = () => nextMedia(media, index);
   const rightChevronIcon = document.createElement("i");
   rightChevronIcon.classList.add("fa-solid", "fa-chevron-right");

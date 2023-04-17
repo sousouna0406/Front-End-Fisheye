@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function modalFactory(data) {
   const { name } = data;
   console.log(name);

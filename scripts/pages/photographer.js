@@ -22,6 +22,7 @@ async function getPhotographer(photographeId) {
 async function displayData(photographer) {
   console.log(photographer);
   const photographersSection = document.querySelector(".photograph-header");
+  // eslint-disable-next-line no-undef
   const photographerModel = photographerFactory(photographer);
   const userCardDOM = photographerModel.getUserCardTxTDOM();
   photographersSection.appendChild(userCardDOM);

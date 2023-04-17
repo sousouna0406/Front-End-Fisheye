@@ -1,5 +1,6 @@
 let sortCriteria;
 
+// eslint-disable-next-line no-unused-vars
 async function displayLightbox() {
   const mediaElements = document.querySelectorAll(".lightbox-trigger");
   const selectElement = document.getElementById("sort-select-ul");
@@ -36,6 +37,7 @@ async function displayLightbox() {
         if (sortCriteria) {
           sortedMedia = sortMedia(sortCriteria, media);
         }
+        // eslint-disable-next-line no-undef
         lightboxFactory(sortedMedia, mediaIndex);
       } else {
         console.error("Photographer medias not found");
@@ -46,6 +48,7 @@ async function displayLightbox() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 async function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";

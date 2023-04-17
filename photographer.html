@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -15,32 +15,66 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role="banner">
-      <img src="assets/images/logo.png" class="logo" />
+    <header role="banner" tabindex="0">
+      <img src="assets/images/logo.png" class="logo" alt="logo" tabindex="0" />
     </header>
-    <main id="main">
-      <div class="photograph-header">
+    <main id="main" tabindex="0">
+      <div class="photograph-header" tabindex="0">
         <button class="contact_button" onclick="displayModal()">
           Contactez-moi
         </button>
       </div>
       <div class="nav">
         <label for="sort-select">Trier par </label>
-        <div class="sort-select">
-          <div class="span">
-            <span>Popularité <i class="fa-solid fa-caret-down"></i></span>
+        <div
+          class="sort-select"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          tabindex="0"
+        >
+          <div
+            class="span"
+            id="selected-option"
+            aria-labelledby="selected-option-label"
+            tabindex="0"
+          >
+            <span id="selected-option-label" tabindex="0"
+              >Popularité <strong class="fa-solid fa-caret-down"></strong
+            ></span>
           </div>
 
-          <ul id="sort-select-ul">
-            <li id="popularity-option" class="active" data-value="popularity">
-              Popularité <i class="fas fa-caret-up"></i>
+          <ul
+            id="sort-select-ul"
+            role="listbox"
+            aria-labelledby="selected-option-label"
+            tabindex="0"
+          >
+            <li
+              id="popularity-option"
+              class="active"
+              data-value="popularity"
+              aria-selected="true"
+              tabindex="0"
+            >
+              Popularité <strong class="fas fa-caret-up"></strong>
             </li>
-            <li id="date-option" class="active" data-value="date">Date</li>
-            <li id="title-option" class="active" data-value="title">Titre</li>
+            <li id="date-option" class="active" data-value="date" tabindex="0">
+              Date
+            </li>
+            <li
+              id="title-option"
+              class="active"
+              data-value="title"
+              tabindex="0"
+            >
+              Titre
+            </li>
           </ul>
         </div>
       </div>
-      <div class="medias" onclick="displayLightbox()"></div>
+
+      <div class="medias" onclick="displayLightbox()" tabindex="0"></div>
     </main>
     <div id="contact_modal" role="dialog">
       <div class="modal">
@@ -50,6 +84,7 @@
             src="assets/icons/close.svg"
             onclick="closeModal()"
             alt="Fermer la fenêtre de contact"
+            tabindex="0"
           />
         </header>
         <form class="form" role="form" aria-label="Formulaire de contact">
@@ -103,7 +138,7 @@
     </div>
 
     <aside id="lightbox">
-      <div class="lightbox-content"></div>
+      <div class="lightbox-content" tabindex="0"></div>
     </aside>
 
     <script src="scripts/utils/lightbox.js"></script>

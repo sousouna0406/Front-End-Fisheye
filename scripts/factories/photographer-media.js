@@ -1,6 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 function mediaFactory(data) {
-  const { date, id, likes, photographerId, price, title, image, video, name } =
-    data;
+  const { likes, photographerId, price, title, image, video, name } = data;
 
   const mediaPath = `assets/images/${photographerId}/`;
   const mediaUrl = `${mediaPath}${video || image}`;
@@ -11,13 +11,15 @@ function mediaFactory(data) {
 
   function getUserMediaCardDOM() {
     const article = document.createElement("article");
-    article.setAttribute("aria-label", `Photo de profil de ${name} `);
+    article.setAttribute("aria-label", `Photo `);
+    article.setAttribute("tabindex", "0");
 
     const mediaElement = isVideo
       ? document.createElement("video")
       : document.createElement("img");
     mediaElement.setAttribute("src", mediaUrl);
     mediaElement.setAttribute("alt", isVideo ? `Video` : `Photo`);
+    mediaElement.setAttribute("tabindex", "0");
     mediaElement.classList.add("lightbox-trigger");
     if (isVideo) {
       mediaElement.allowfullscreen = true;
@@ -26,8 +28,10 @@ function mediaFactory(data) {
     const titre = document.createElement("h3");
     titre.textContent = title;
     titre.setAttribute("aria-label", "titre");
+    titre.setAttribute("tabindex", "0");
 
     const like = document.createElement("span");
+    like.setAttribute("tabindex", "0");
     console.log(likes);
     like.classList.add("heart-likes");
     like.textContent = likeCount + " ";
@@ -62,6 +66,7 @@ function mediaFactory(data) {
     const spanEncart = document.createElement("span");
     spanEncart.textContent = `${price}€ / Jour`;
     spanEncart.setAttribute("aria-label", `Prix : ${price}€/Jour`);
+    divEncart.setAttribute("tabindex", "0");
 
     divEncart.appendChild(spanEncart);
 
