@@ -40,7 +40,7 @@
             tabindex="0"
           >
             <span id="selected-option-label" tabindex="0"
-              >Popularité <strong class="fa-solid fa-caret-down"></strong
+              >Popularité <strong class="fa-solid fa-angle-down"></strong
             ></span>
           </div>
 
@@ -52,21 +52,26 @@
           >
             <li
               id="popularity-option"
-              class="active"
               data-value="popularity"
               aria-selected="true"
               tabindex="0"
             >
-              Popularité <strong class="fas fa-caret-up"></strong>
+              Popularité <strong class="fa-solid fa-angle-up"></strong>
             </li>
-            <li id="date-option" class="active" data-value="date" tabindex="0">
+
+            <li
+              id="date-option"
+              data-value="date"
+              tabindex="0"
+              aria-selected="true"
+            >
               Date
             </li>
             <li
               id="title-option"
-              class="active"
               data-value="title"
               tabindex="0"
+              aria-selected="true"
             >
               Titre
             </li>

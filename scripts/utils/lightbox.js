@@ -1,12 +1,16 @@
-let sortCriteria;
-
 // eslint-disable-next-line no-unused-vars
 async function displayLightbox() {
+  let sortCriteria;
   const mediaElements = document.querySelectorAll(".lightbox-trigger");
   const selectElement = document.getElementById("sort-select-ul");
-
   mediaElements.forEach((element) => {
+    console.log(element);
     element.addEventListener("click", openLightbox);
+    element.addEventListener("keydown", (e) => {
+      if (e.code === "Enter") {
+        console.log("hi");
+      }
+    });
   });
 
   selectElement.addEventListener("click", (event) => {
@@ -79,3 +83,21 @@ function sortMedia(sortCriteria, mediaArray) {
   console.log("Comparaison après tri :", mediaArray);
   return mediaArray;
 }
+/*addEventListener("keydown", (event) => {
+  if (lightbox.style.display && lightbox.style.display !== "none") {
+    if (event.code === "ArrowLeft") {
+      return prevMedia(media, index);
+    }
+    if (event.code === "ArrowRight") {
+      return nextMedia(media, index);
+    }
+    // if (event.code === "Escape") {
+    //   return closeMediaModal();
+    // }
+  }
+  if (lightbox.style.display && lightbox.style.display !== "none") {
+    if (event.code === "Escape") {
+      lightbox.style.display = "none";
+    }
+  }
+});*/

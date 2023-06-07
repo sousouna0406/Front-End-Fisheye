@@ -41,15 +41,18 @@
   }
   
   #sort-select-ul {
-    visibility: hidden;
+    display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
+    left: 8rem;
+    top: 0rem;
     padding: 0;
     margin: 0;
     background-color: #901C1C;
     border: 1px solid#901C1C;
     color: #fff;
+    opacity: 0;
+    transition: all 2s ease-out;
+    border-radius: 5px;
   }
   
   #sort-select-ul li {
@@ -59,31 +62,32 @@
     background-color: #901C1C;
     color: #fff;
     font-size: 24px;
-    width: 9.3rem;
+    width: 8.7rem;
+   
+   
 }
   
   .sort-select:hover #sort-select-ul {
-    visibility: visible;
+    display: block;
     background-color: #e0e0e0;
     position: absolute;
     left: 8rem;
     top: 0rem;
     border-radius: 5px;
+    z-index: 1;
+    opacity: 1;
   }
+
   
-  .active:hover {
-  background-color: #901c1c36;;
-    color: #fff;
-  }
-  .sort-select .fa-caret-down:before {
-    content: '\f0d7'; 
-    margin-left: 15px; 
-  }
-  
- 
-  .fa-caret-up:before {
-    content: "\f0d8";
-    margin-left: 15px;
+  .fa-angle-down:before {
+    content: "\f107";
+    margin-left: 5px;
+    font-size: 17px;
+}
+.fa-angle-up:before {
+    content: "\f106";
+    font-size: 17px;
+    margin-left: 5px;
 }
 
 .photograph-header {

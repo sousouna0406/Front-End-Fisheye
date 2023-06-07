@@ -24,7 +24,11 @@ function mediaFactory(data) {
     if (isVideo) {
       mediaElement.allowfullscreen = true;
     }
-
+    article.addEventListener("keydown", (e) => {
+      if (e.code === "Enter") {
+        console.log("here");
+      }
+    });
     const titre = document.createElement("h3");
     titre.textContent = title;
     titre.setAttribute("aria-label", "titre");
