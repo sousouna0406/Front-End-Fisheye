@@ -28,6 +28,14 @@ function mediaFactory(data) {
       displayLightbox();
       console.log(mediaElement);
     };
+
+    mediaElement.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        console.log("Touche Enter pressée");
+        // eslint-disable-next-line no-undef
+        displayLightbox();
+      }
+    });
     if (isVideo) {
       mediaElement.allowfullscreen = true;
     }

@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
 let sortCriteria;
 
+// eslint-disable-next-line no-unused-vars
 async function displayLightbox() {
   console.log("displayLightbox");
   const mediaElements = document.querySelectorAll(".lightbox-trigger");
