@@ -20,6 +20,7 @@
   
   .sort-select {
     position: relative;
+    cursor: pointer;
   }
   .nav span{
     color: #fff;
@@ -44,15 +45,16 @@
     display: none;
     position: absolute;
     left: 8rem;
-    top: 0rem;
+    top: 0;
     padding: 0;
     margin: 0;
     background-color: #901C1C;
-    border: 1px solid#901C1C;
+    border: 1px solid #901C1C;
     color: #fff;
     opacity: 0;
-    transition: all 2s ease-out;
+    transition: all 0.2s ease-out;
     border-radius: 5px;
+    z-index: 1;
   }
   
   #sort-select-ul li {
@@ -67,6 +69,10 @@
    
 }
   
+.sort-select:focus-within #sort-select-ul {
+    display: block;
+    opacity: 1;
+  }
   .sort-select:hover #sort-select-ul {
     display: block;
     background-color: #e0e0e0;
@@ -236,7 +242,9 @@
     position: fixed;
     top: 3%;
     left: 32%;
+    z-index: 9999;
 }
+
 .blur{
     opacity: 0.7;
     

@@ -1,24 +1,31 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+let sortCriteria;
+
 async function displayLightbox() {
-  let sortCriteria;
+  console.log("displayLightbox");
   const mediaElements = document.querySelectorAll(".lightbox-trigger");
   const selectElement = document.getElementById("sort-select-ul");
+
   mediaElements.forEach((element) => {
-    console.log(element);
-    element.addEventListener("click", openLightbox);
-    element.addEventListener("keydown", (e) => {
-      if (e.code === "Enter") {
-        console.log("hi");
+    element.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        console.log("find");
+
+        openLightbox(event);
       }
     });
+
+    element.onclick = (event) => openLightbox(event);
+    console.log(element);
   });
 
-  selectElement.addEventListener("click", (event) => {
+  selectElement.onclick = (event) => {
     sortCriteria = event.target.getAttribute("data-value");
     console.log(sortCriteria);
-  });
+  };
 
   async function openLightbox(event) {
+    console.log("openLightbox");
     const urlParams = new URLSearchParams(window.location.search);
     const photographeId = urlParams.get("id");
     const lightbox = document.getElementById("lightbox");
@@ -34,12 +41,17 @@ async function displayLightbox() {
       const media = data.media.filter(
         (media) => media.photographerId == photographeId
       );
+      console.log(media);
 
       if (media) {
         const mediaIndex = Array.from(mediaElements).indexOf(event.target);
+        console.log(mediaIndex);
         let sortedMedia = media;
+        console.log(sortedMedia);
+        console.log(sortCriteria);
         if (sortCriteria) {
           sortedMedia = sortMedia(sortCriteria, media);
+          console.log(sortedMedia);
         }
         // eslint-disable-next-line no-undef
         lightboxFactory(sortedMedia, mediaIndex);
@@ -50,10 +62,35 @@ async function displayLightbox() {
       console.error("Error fetching data:", error);
     }
   }
+
+  // Fonction de tri des médias
+  function sortMedia(sortCriteria, mediaArray) {
+    console.log("sortMedia");
+    console.log("Comparaison avant tri :", mediaArray);
+    console.log("sortCriteria:", sortCriteria);
+
+    switch (sortCriteria) {
+      case "popularity":
+        mediaArray.sort((a, b) => b.likes - a.likes);
+        break;
+      case "date":
+        mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "title":
+        mediaArray.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      default:
+        console.error("Invalid sort criteria:", sortCriteria);
+        return false;
+    }
+    console.log("Comparaison après tri :", mediaArray);
+    return mediaArray;
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
 async function closeLightbox() {
+  console.log("closeLightbox");
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
   const main = document.getElementById("main");
@@ -61,43 +98,3 @@ async function closeLightbox() {
   const header = document.querySelector("header");
   header.classList.remove("blur");
 }
-
-function sortMedia(sortCriteria, mediaArray) {
-  console.log("Comparaison avant tri :", mediaArray);
-  console.log("sortCriteria:", sortCriteria);
-
-  switch (sortCriteria) {
-    case "popularity":
-      mediaArray.sort((a, b) => b.likes - a.likes);
-      break;
-    case "date":
-      mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
-      break;
-    case "title":
-      mediaArray.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    default:
-      console.error("Invalid sort criteria:", sortCriteria);
-      return false;
-  }
-  console.log("Comparaison après tri :", mediaArray);
-  return mediaArray;
-}
-/*addEventListener("keydown", (event) => {
-  if (lightbox.style.display && lightbox.style.display !== "none") {
-    if (event.code === "ArrowLeft") {
-      return prevMedia(media, index);
-    }
-    if (event.code === "ArrowRight") {
-      return nextMedia(media, index);
-    }
-    // if (event.code === "Escape") {
-    //   return closeMediaModal();
-    // }
-  }
-  if (lightbox.style.display && lightbox.style.display !== "none") {
-    if (event.code === "Escape") {
-      lightbox.style.display = "none";
-    }
-  }
-});*/

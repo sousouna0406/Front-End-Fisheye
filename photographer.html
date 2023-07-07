@@ -20,7 +20,7 @@
     </header>
     <main id="main" tabindex="0">
       <div class="photograph-header" tabindex="0">
-        <button class="contact_button" onclick="displayModal()">
+        <button class="contact_button" onclick="displayModal()" tabindex="0">
           Contactez-moi
         </button>
       </div>
@@ -35,7 +35,6 @@
         >
           <div
             class="span"
-            id="selected-option"
             aria-labelledby="selected-option-label"
             tabindex="0"
           >
@@ -79,17 +78,19 @@
         </div>
       </div>
 
-      <div class="medias" onclick="displayLightbox()" tabindex="0"></div>
+      <div class="medias" tabindex="0"></div>
     </main>
     <div id="contact_modal" role="dialog">
       <div class="modal">
         <header>
           <h2 class="contact">Contactez-moi</h2>
+
           <img
             src="assets/icons/close.svg"
-            onclick="closeModal()"
             alt="Fermer la fenêtre de contact"
             tabindex="0"
+            onclick="closeModal()"
+            onkeypress="closeModal()"
           />
         </header>
         <form class="form" role="form" aria-label="Formulaire de contact">
@@ -99,6 +100,7 @@
               type="text"
               id="first-name"
               role="textbox"
+              tabindex="0"
               aria-required="true"
               aria-label="Entrez votre prénom"
             />
@@ -107,6 +109,7 @@
               type="text"
               id="last-name"
               role="textbox"
+              tabindex="0"
               aria-required="true"
               aria-label="Entrez votre nom"
             />
@@ -115,6 +118,7 @@
               type="text"
               id="e-mail"
               role="textbox"
+              tabindex="0"
               aria-required="true"
               aria-label="Entrez votre adresse email"
             />
@@ -123,6 +127,7 @@
               name="message"
               id="textarea"
               role="textbox"
+              tabindex="0"
               aria-required="true"
               aria-label="Entrez votre message"
               cols="30"
@@ -133,8 +138,8 @@
           <button
             class="modal_button"
             role="button"
+            tabindex="0"
             aria-label="Envoyer le formulaire"
-            onclick="closeModal() "
           >
             Envoyer
           </button>

@@ -30,6 +30,12 @@ function lightboxFactory(media, index) {
   closeBtn.classList.add("close");
   // eslint-disable-next-line no-undef
   closeBtn.onclick = closeLightbox;
+  closeBtn.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      // eslint-disable-next-line no-undef
+      closeLightbox();
+    }
+  });
   const xIcon = document.createElement("i");
   xIcon.classList.add("fa-solid", "fa-xmark");
   closeBtn.appendChild(xIcon);
@@ -38,6 +44,11 @@ function lightboxFactory(media, index) {
   leftBtn.setAttribute("tabindex", "0");
   leftBtn.classList.add("left");
   leftBtn.onclick = () => prevMedia(media, index);
+  leftBtn.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      prevMedia(media, index);
+    }
+  });
   const leftChevronIcon = document.createElement("i");
   leftChevronIcon.classList.add("fa-sharp", "fa-solid", "fa-chevron-left");
   leftBtn.appendChild(leftChevronIcon);
@@ -46,6 +57,12 @@ function lightboxFactory(media, index) {
   rightBtn.classList.add("right");
   rightBtn.setAttribute("tabindex", "0");
   rightBtn.onclick = () => nextMedia(media, index);
+  rightBtn.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      nextMedia(media, index);
+    }
+  });
+
   const rightChevronIcon = document.createElement("i");
   rightChevronIcon.classList.add("fa-solid", "fa-chevron-right");
   rightBtn.appendChild(rightChevronIcon);
@@ -69,6 +86,7 @@ function lightboxFactory(media, index) {
       lightboxFactory(media, index - 1);
     }
   }
+  mediaElement.focus();
 
   return { lightboxContent };
 }

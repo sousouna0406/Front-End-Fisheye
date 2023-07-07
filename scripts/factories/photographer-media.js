@@ -10,6 +10,7 @@ function mediaFactory(data) {
   let liked = false;
 
   function getUserMediaCardDOM() {
+    console.log("getUserMediaCardDOM");
     const article = document.createElement("article");
     article.setAttribute("aria-label", `Photo `);
     article.setAttribute("tabindex", "0");
@@ -21,14 +22,16 @@ function mediaFactory(data) {
     mediaElement.setAttribute("alt", isVideo ? `Video` : `Photo`);
     mediaElement.setAttribute("tabindex", "0");
     mediaElement.classList.add("lightbox-trigger");
+    mediaElement.onclick = () => {
+      console.log("je suis ici");
+      // eslint-disable-next-line no-undef
+      displayLightbox();
+      console.log(mediaElement);
+    };
     if (isVideo) {
       mediaElement.allowfullscreen = true;
     }
-    article.addEventListener("keydown", (e) => {
-      if (e.code === "Enter") {
-        console.log("here");
-      }
-    });
+    console.log(mediaElement);
     const titre = document.createElement("h3");
     titre.textContent = title;
     titre.setAttribute("aria-label", "titre");
@@ -54,6 +57,22 @@ function mediaFactory(data) {
           '<i class="fa-sharp fa-solid fa-heart" aria-hidden="true"></i>';
       }
     });
+    like.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        if (liked) {
+          liked = false;
+          likeCount--;
+          like.textContent = likeCount + " ";
+          like.innerHTML += '<i class="fa-regular fa-heart"></i>';
+        } else {
+          liked = true;
+          likeCount++;
+          like.textContent = likeCount + " ";
+          like.innerHTML +=
+            '<i class="fa-sharp fa-solid fa-heart" aria-hidden="true"></i>';
+        }
+      }
+    });
 
     article.appendChild(mediaElement);
     article.appendChild(titre);
@@ -63,6 +82,7 @@ function mediaFactory(data) {
   }
 
   function encart() {
+    console.log("encart");
     const divEncart = document.createElement("div");
     divEncart.classList.add("encart");
     divEncart.setAttribute("aria-label", `div : Profil de ${name}`);

@@ -1,5 +1,3 @@
-console.log("photographer.js loaded");
-
 const urlParams = new URLSearchParams(window.location.search);
 const photographeId = urlParams.get("id");
 export { photographeId };
