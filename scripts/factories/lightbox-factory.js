@@ -86,7 +86,30 @@ function lightboxFactory(media, index) {
       lightboxFactory(media, index - 1);
     }
   }
-  mediaElement.focus();
+  console.log(mediaElement);
+  function handleLightboxFocus(e) {
+    const focusableElements = lightboxElement.querySelectorAll(
+      "p:not([disabled]),img:not([disabled]), span:not([disabled]) "
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
 
+    if (e.key === "Tab") {
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+  const focusableElements = lightboxElement.querySelectorAll(
+    "p:not([disabled]),img:not([disabled]), span:not([disabled]) "
+  );
+  console.log(focusableElements);
+  const firstElement = focusableElements[0];
+  lightboxElement.addEventListener("keydown", handleLightboxFocus);
+  firstElement.focus();
   return { lightboxContent };
 }

@@ -24,6 +24,15 @@ async function displayLightbox() {
     console.log(sortCriteria);
   };
 
+  selectElement.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      console.log("bla");
+
+      sortCriteria = event.target.getAttribute("data-value");
+      console.log(sortCriteria);
+    }
+  });
+
   async function openLightbox(event) {
     console.log("openLightbox");
     const urlParams = new URLSearchParams(window.location.search);
@@ -45,7 +54,12 @@ async function displayLightbox() {
 
       if (media) {
         const mediaIndex = Array.from(mediaElements).indexOf(event.target);
+        console.log(media);
         console.log(mediaIndex);
+        /*  const selectedMedia = media[mediaIndex];
+        console.log(selectedMedia);
+        const selectedMediaId = selectedMedia.id;
+        console.log(selectedMediaId);*/
         let sortedMedia = media;
         console.log(sortedMedia);
         console.log(sortCriteria);
