@@ -30,7 +30,7 @@
 
       <!-- Système de tri -->
       <div class="nav">
-        <label for="sort-select">Trier par </label>
+        <p>Trier par</p>
         <div
           class="sort-select"
           role="combobox"
@@ -59,6 +59,7 @@
               data-value="popularity"
               aria-selected="true"
               tabindex="0"
+              role="option"
             >
               Popularité <strong class="fa-solid fa-angle-up"></strong>
             </li>
@@ -68,6 +69,7 @@
               data-value="date"
               tabindex="0"
               aria-selected="true"
+              role="option"
             >
               Date
             </li>
@@ -76,6 +78,7 @@
               data-value="title"
               tabindex="0"
               aria-selected="true"
+              role="option"
             >
               Titre
             </li>
@@ -103,38 +106,34 @@
         </header>
         <form class="form" role="form" aria-label="Formulaire de contact">
           <div class="form-contact">
-            <label for="first-name" role="label">Prénom</label>
+            <label for="first-name">Prénom</label>
             <input
               type="text"
               id="first-name"
-              role="textbox"
               tabindex="0"
               aria-required="true"
               aria-label="Entrez votre prénom"
             />
-            <label for="last-name" role="label">Nom</label>
+            <label for="last-name">Nom</label>
             <input
               type="text"
               id="last-name"
-              role="textbox"
               tabindex="0"
               aria-required="true"
               aria-label="Entrez votre nom"
             />
-            <label for="e-mail" role="label">E-mail</label>
+            <label for="e-mail">E-mail</label>
             <input
               type="text"
               id="e-mail"
-              role="textbox"
               tabindex="0"
               aria-required="true"
               aria-label="Entrez votre adresse email"
             />
-            <label for="textarea" role="label">Votre message</label>
+            <label for="textarea">Votre message</label>
             <textarea
               name="message"
               id="textarea"
-              role="textbox"
               tabindex="0"
               aria-required="true"
               aria-label="Entrez votre message"

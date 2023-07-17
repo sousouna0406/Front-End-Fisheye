@@ -14,14 +14,14 @@ function mediaFactory(data) {
   // Fonction pour la création et l'affichage des images (ou vidéos), titres ainsi que des likes de la page photographer
   function getUserMediaCardDOM() {
     const article = document.createElement("article");
-    article.setAttribute("aria-label", `Photo `);
+    article.setAttribute("aria-label", `Article de galerie photos `);
     article.setAttribute("tabindex", "0");
 
     const mediaElement = isVideo
       ? document.createElement("video")
       : document.createElement("img");
     mediaElement.setAttribute("src", mediaUrl);
-    mediaElement.setAttribute("alt", isVideo ? `Video` : `Photo`);
+    mediaElement.setAttribute("alt", isVideo ? `${title}` : `${title}`);
     mediaElement.setAttribute("tabindex", "0");
     mediaElement.classList.add("lightbox-trigger");
 

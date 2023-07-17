@@ -45,13 +45,12 @@ function lightboxFactory() {
     xIcon.classList.add("fa-solid", "fa-xmark");
     closeBtn.appendChild(xIcon);
 
-    // Création des éléments de navigation gauche et droite
     const leftBtn = document.createElement("span");
     leftBtn.setAttribute("tabindex", "0");
     leftBtn.classList.add("left");
     leftBtn.onclick = () => prevMedia(media, index);
     leftBtn.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
+      if (event.key === "Enter" || event.key === "ArrowLeft") {
         prevMedia(media, index);
       }
     });
@@ -64,7 +63,7 @@ function lightboxFactory() {
     rightBtn.setAttribute("tabindex", "0");
     rightBtn.onclick = () => nextMedia(media, index);
     rightBtn.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
+      if (event.key === "Enter" || event.key === "ArrowRight") {
         nextMedia(media, index);
       }
     });
@@ -84,6 +83,7 @@ function lightboxFactory() {
     // Fonction pour passer au média suivant
     function nextMedia(media, index) {
       if (index < media.length - 1) {
+        document.removeEventListener("keydown", handleKeyboardNavigation);
         createLightbox(media, index + 1);
       }
     }
@@ -91,9 +91,20 @@ function lightboxFactory() {
     // Fonction pour passer au média précédent
     function prevMedia(media, index) {
       if (index > 0) {
+        document.removeEventListener("keydown", handleKeyboardNavigation);
         createLightbox(media, index - 1);
       }
     }
+    // Gère le passage des medias de la lightbox en fonction du clavier (gauche ou droite)
+    function handleKeyboardNavigation(event) {
+      if (event.key === "ArrowLeft") {
+        prevMedia(media, index);
+      } else if (event.key === "ArrowRight") {
+        nextMedia(media, index);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyboardNavigation);
 
     // Fonction pour gérer le focus dans la lightbox
     function handleLightboxFocus(e) {
