@@ -12,14 +12,11 @@ async function getPhotographer(photographeId) {
   const photographer = photographersJson.photographers.find(
     (photographer) => photographer.id == photographeId
   );
-  console.log(photographer);
-
   return photographer;
 }
 
 // Affichage des informations textuelles et l'image du photographe
 async function displayData(photographer) {
-  console.log(photographer);
   const photographersSection = document.querySelector(".photograph-header");
   // eslint-disable-next-line no-undef
   const photographerModel = photographerFactory(photographer);

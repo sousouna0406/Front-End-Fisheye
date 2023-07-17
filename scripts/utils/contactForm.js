@@ -25,7 +25,6 @@ function handleModalFocus(e) {
 async function displayModal() {
   const urlParams = new URLSearchParams(window.location.search);
   const photographeId = urlParams.get("id");
-  console.log(photographeId);
   const modal = document.getElementById("contact_modal");
 
   modal.style.display = "block";
@@ -37,12 +36,10 @@ async function displayModal() {
   try {
     const response = await fetch("../data/photographers.json");
     const data = await response.json();
-    console.log("Data received:", data);
     const photographer = data.photographers.find(
       (photographer) => photographer.id == photographeId
     );
     if (photographer) {
-      console.log("Photographer Name: ", photographer.name);
       // eslint-disable-next-line no-undef
       modalFactory(photographer);
       const focusableElements = modal.querySelectorAll(

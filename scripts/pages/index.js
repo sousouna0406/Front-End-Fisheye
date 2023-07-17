@@ -5,16 +5,13 @@ async function getPhotographers() {
     throw new Error("Erreur lors de la récupération des données.");
   }
   const photographersJson = await response.json();
-  console.log(photographersJson);
   return photographersJson;
 }
 
 // Fonction qui itère sur chaque photographe et affiche les données récupérées
 async function displayData(photographers) {
-  console.log(photographers);
   const photographersSection = document.querySelector(".photographer_section");
   photographers.forEach((photographer) => {
-    console.log(photographer);
     // eslint-disable-next-line no-undef
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();

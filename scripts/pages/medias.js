@@ -1,5 +1,4 @@
 import { photographeId } from "../pages/photographer.js";
-console.log(photographeId);
 
 // Fonction recupération de donnée d'un photographe grâce a son id et aussi les medias associé a lui
 async function getMedia(photographeId) {
@@ -8,22 +7,21 @@ async function getMedia(photographeId) {
     throw new Error("Erreur lors de la récupération des données.");
   }
   const photographersJson = await response.json();
-  console.log(photographersJson);
+
   const photographer = photographersJson.photographers.filter(
     (photographers) => photographers.id == photographeId
   );
-  console.log(photographer);
+
   const media = photographersJson.media.filter(
     (media) => media.photographerId == photographeId
   );
-  console.log(media);
+
   return { media, photographer };
 }
 
 // Fonction affichage des differentes données d'un photographe
 async function displayData(photographer) {
   const photographersSection = document.querySelector(".medias");
-  console.log(photographer);
 
   /* CALCUL ET AFFICHAGE DU NOMBRE DES LIKES */
 
@@ -100,7 +98,6 @@ async function displayData(photographer) {
 
     // Itération sur chaque élément de prix du photographe
     photographer.photographer.forEach((price) => {
-      console.log(price);
       // eslint-disable-next-line no-undef
       const encartModel = mediaFactory(price);
       const encartCardDOM = encartModel.encart();
@@ -152,7 +149,6 @@ async function displayData(photographer) {
 
   // Itération sur chaque élément de prix du photographe et génère un élément DOM (encart)
   photographer.photographer.forEach((price) => {
-    console.log(price);
     // eslint-disable-next-line no-undef
     const encartModel = mediaFactory(price);
     const encartCardDOM = encartModel.encart();

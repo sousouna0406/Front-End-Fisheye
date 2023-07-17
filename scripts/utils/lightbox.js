@@ -10,14 +10,11 @@ async function displayLightbox() {
   mediaElements.forEach((element) => {
     element.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        console.log("find");
-
         openLightbox(event);
       }
     });
 
     element.onclick = (event) => openLightbox(event);
-    console.log(element);
   });
 
   //Gestionnaire d'événements onclick à selectElement pour récupérer la valeur du critère de tri sélectionné
@@ -29,7 +26,6 @@ async function displayLightbox() {
   selectElement.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       sortCriteria = event.target.getAttribute("data-value");
-      console.log(sortCriteria);
     }
   });
 
@@ -50,7 +46,6 @@ async function displayLightbox() {
       const media = data.media.filter(
         (media) => media.photographerId == photographeId
       );
-      console.log(media);
 
       if (media) {
         // Recupere l'index de l'élément sur lequel le clic a été effectué puis trie les médias en fonction du critère de tri (s'il est défini)

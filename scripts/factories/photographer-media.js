@@ -13,7 +13,6 @@ function mediaFactory(data) {
 
   // Fonction pour la création et l'affichage des images (ou vidéos), titres ainsi que des likes de la page photographer
   function getUserMediaCardDOM() {
-    console.log("getUserMediaCardDOM");
     const article = document.createElement("article");
     article.setAttribute("aria-label", `Photo `);
     article.setAttribute("tabindex", "0");
@@ -29,7 +28,6 @@ function mediaFactory(data) {
     if (isVideo) {
       mediaElement.allowfullscreen = true;
     }
-    console.log(mediaElement);
     const titre = document.createElement("h3");
     titre.textContent = title;
     titre.setAttribute("aria-label", "titre");
@@ -37,7 +35,6 @@ function mediaFactory(data) {
 
     const like = document.createElement("span");
     like.setAttribute("tabindex", "0");
-    console.log(likes);
     like.classList.add("heart-likes");
     like.textContent = likeCount + " ";
     like.innerHTML += '<i class="fa-regular fa-heart"></i>';
@@ -77,16 +74,13 @@ function mediaFactory(data) {
     });
     // Gestion du clic sur le média pour ouvrir la lightbox
     mediaElement.onclick = () => {
-      console.log("je suis ici");
       // eslint-disable-next-line no-undef
       displayLightbox();
-      console.log(mediaElement);
     };
 
     // Gestion de la touche Enter pour ouvrir la lightbox
     mediaElement.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
-        console.log("Touche Enter pressée");
         // eslint-disable-next-line no-undef
         displayLightbox();
       }
@@ -100,7 +94,6 @@ function mediaFactory(data) {
 
   // Fonction pour la création et l'affichage de l'encart avec l'honoraires journalier du photographer
   function encart() {
-    console.log("encart");
     const divEncart = document.createElement("div");
     divEncart.classList.add("encart");
     divEncart.setAttribute("aria-label", `div : Profil de ${name}`);
