@@ -11,17 +11,23 @@
     <title>Fisheye</title>
   </head>
   <body>
+    <!-- En-tête de la page -->
     <header tabindex="0">
       <img src="assets/images/logo.png" class="logo" alt="logo" tabindex="0" />
       <h1 tabindex="0">Nos photographes</h1>
     </header>
+
     <main id="main">
+      <!-- Section des photographes -->
       <div
         class="photographer_section"
         aria-label="Ensemble de photographes"
+        tabindex="0"
       ></div>
     </main>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script>
+
+    <!-- Chargement des scripts -->
+    <script src="scripts/factories/photographer.js" defer></script>
+    <script src="scripts/pages/index.js" defer></script>
   </body>
 </html>

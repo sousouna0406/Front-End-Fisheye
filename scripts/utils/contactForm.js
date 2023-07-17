@@ -20,7 +20,7 @@ function handleModalFocus(e) {
   }
 }
 
-// Fonction pour activer la modale
+// Fonction pour activer et afficher les différents éléments de la modale
 // eslint-disable-next-line no-unused-vars
 async function displayModal() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -72,7 +72,7 @@ function closeModal() {
   form.reset();
 }
 
-// Ajouter un gestionnaire d'événement pour le formulaire de contact
+// Ajout d'un gestionnaire d'événements pour le formulaire de contact pour que les valeurs des champs sont récupérées soit affichées dans la console
 const form = document.getElementById("contact_modal").querySelector("form");
 form.addEventListener("submit", async function (event) {
   event.preventDefault();

@@ -1,3 +1,5 @@
+/* Factory qui crée des modèles de photographe */
+
 // eslint-disable-next-line no-unused-vars
 function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
@@ -5,6 +7,7 @@ function photographerFactory(data) {
 
   const picture = `assets/photographers/Photographers-ID-Photos/${portrait}`;
 
+  // Fonction qui crée et retourne les éléments DOM du photographe
   function getUserCardDOM() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", `Article : Profil de ${name}`);
@@ -47,6 +50,8 @@ function photographerFactory(data) {
 
     return article;
   }
+
+  // Fonction qui crée et retourne les éléments du photographe avec seulement le texte (sans l'image)
   function getUserCardTxTDOM() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", `Article : Profil de ${name}`);
@@ -70,6 +75,8 @@ function photographerFactory(data) {
     article.appendChild(pTagline);
     return article;
   }
+
+  // Fonction crée et retourne les éléments DOM rdu photographe avec seulement l'image
   function getUserCardImgDOM() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", `Article : Profil de ${name}`);

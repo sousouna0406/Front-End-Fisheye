@@ -197,6 +197,7 @@
 }
   main .total-likes{
     font-size: 24px;
+    font-weight: bolder;
     display: flex;
     position: fixed;
     align-items: center;

@@ -1,3 +1,5 @@
+/* Factory pour afficher le nom du photographe. */
+
 // eslint-disable-next-line no-unused-vars
 function modalFactory(data) {
   const { name } = data;

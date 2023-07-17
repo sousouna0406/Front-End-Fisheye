@@ -1,3 +1,5 @@
+/* Factory qui crée des modèles de media et de l'encart */
+
 // eslint-disable-next-line no-unused-vars
 function mediaFactory(data) {
   const { likes, photographerId, price, title, image, video, name } = data;
@@ -9,6 +11,7 @@ function mediaFactory(data) {
   let likeCount = likes;
   let liked = false;
 
+  // Fonction pour la création et l'affichage des images (ou vidéos), titres ainsi que des likes de la page photographer
   function getUserMediaCardDOM() {
     console.log("getUserMediaCardDOM");
     const article = document.createElement("article");
@@ -22,20 +25,7 @@ function mediaFactory(data) {
     mediaElement.setAttribute("alt", isVideo ? `Video` : `Photo`);
     mediaElement.setAttribute("tabindex", "0");
     mediaElement.classList.add("lightbox-trigger");
-    mediaElement.onclick = () => {
-      console.log("je suis ici");
-      // eslint-disable-next-line no-undef
-      displayLightbox();
-      console.log(mediaElement);
-    };
 
-    mediaElement.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.keyCode === 13) {
-        console.log("Touche Enter pressée");
-        // eslint-disable-next-line no-undef
-        displayLightbox();
-      }
-    });
     if (isVideo) {
       mediaElement.allowfullscreen = true;
     }
@@ -51,6 +41,8 @@ function mediaFactory(data) {
     like.classList.add("heart-likes");
     like.textContent = likeCount + " ";
     like.innerHTML += '<i class="fa-regular fa-heart"></i>';
+
+    // Gestion du clic sur le like
     like.addEventListener("click", () => {
       if (liked) {
         liked = false;
@@ -65,6 +57,8 @@ function mediaFactory(data) {
           '<i class="fa-sharp fa-solid fa-heart" aria-hidden="true"></i>';
       }
     });
+
+    // Gestion de la touche Enter sur le like
     like.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         if (liked) {
@@ -81,7 +75,22 @@ function mediaFactory(data) {
         }
       }
     });
+    // Gestion du clic sur le média pour ouvrir la lightbox
+    mediaElement.onclick = () => {
+      console.log("je suis ici");
+      // eslint-disable-next-line no-undef
+      displayLightbox();
+      console.log(mediaElement);
+    };
 
+    // Gestion de la touche Enter pour ouvrir la lightbox
+    mediaElement.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        console.log("Touche Enter pressée");
+        // eslint-disable-next-line no-undef
+        displayLightbox();
+      }
+    });
     article.appendChild(mediaElement);
     article.appendChild(titre);
     article.appendChild(like);
@@ -89,6 +98,7 @@ function mediaFactory(data) {
     return article;
   }
 
+  // Fonction pour la création et l'affichage de l'encart avec l'honoraires journalier du photographer
   function encart() {
     console.log("encart");
     const divEncart = document.createElement("div");

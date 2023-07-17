@@ -1,3 +1,4 @@
+// Fonction de recupération des données des photographes
 async function getPhotographers() {
   const response = await fetch("../data/photographers.json");
   if (!response.ok) {
@@ -8,6 +9,7 @@ async function getPhotographers() {
   return photographersJson;
 }
 
+// Fonction qui itère sur chaque photographe et affiche les données récupérées
 async function displayData(photographers) {
   console.log(photographers);
   const photographersSection = document.querySelector(".photographer_section");
@@ -20,9 +22,9 @@ async function displayData(photographers) {
   });
 }
 
+// Fonction appel getPhotographers et displayData et verifie qu'il n'y a pas d'erreur
 async function init() {
   try {
-    // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     displayData(photographers);
   } catch (error) {

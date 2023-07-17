@@ -1,8 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const photographeId = urlParams.get("id");
 export { photographeId };
-console.log(photographeId);
 
+// Fonction de recupération des données d'un photographe grâce a son ID
 async function getPhotographer(photographeId) {
   const response = await fetch("../data/photographers.json");
   if (!response.ok) {
@@ -17,6 +17,7 @@ async function getPhotographer(photographeId) {
   return photographer;
 }
 
+// Affichage des informations textuelles et l'image du photographe
 async function displayData(photographer) {
   console.log(photographer);
   const photographersSection = document.querySelector(".photograph-header");
@@ -28,9 +29,9 @@ async function displayData(photographer) {
   photographersSection.appendChild(userImgCardDOM);
 }
 
+// Fonction appel getPhotographer et displayData et verifie qu'il n'y a pas d'erreur
 async function init() {
   try {
-    // Récupère les datas des photographes
     const photographer = await getPhotographer(photographeId);
     displayData(photographer);
   } catch (error) {

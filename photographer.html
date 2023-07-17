@@ -15,15 +15,20 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
+    <!-- En-tête de la page -->
     <header role="banner" tabindex="0">
       <img src="assets/images/logo.png" class="logo" alt="logo" tabindex="0" />
     </header>
+
+    <!-- Contenu principal -->
     <main id="main" tabindex="0">
       <div class="photograph-header" tabindex="0">
         <button class="contact_button" onclick="displayModal()" tabindex="0">
           Contactez-moi
         </button>
       </div>
+
+      <!-- Système de tri -->
       <div class="nav">
         <label for="sort-select">Trier par </label>
         <div
@@ -78,8 +83,11 @@
         </div>
       </div>
 
+      <!-- Section des differentes images du photographe -->
       <div class="medias" tabindex="0"></div>
     </main>
+
+    <!-- Modal de contact -->
     <div id="contact_modal" role="dialog">
       <div class="modal">
         <header>
@@ -147,9 +155,12 @@
       </div>
     </div>
 
+    <!-- Lightbox -->
     <aside id="lightbox">
       <div class="lightbox-content" tabindex="0"></div>
     </aside>
+
+    <!-- Chargement des scripts -->
     <script src="scripts/factories/photographer-media.js"></script>
     <script src="scripts/factories/lightbox-factory.js"></script>
     <script src="scripts/utils/lightbox.js"></script>

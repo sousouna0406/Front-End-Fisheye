@@ -1,11 +1,12 @@
 let sortCriteria;
 
+/* Fonction qui gère l'ouverture de la lightbox ainsi que l'affichage des differents élément de celle-ci */
 // eslint-disable-next-line no-unused-vars
 async function displayLightbox() {
-  console.log("displayLightbox");
   const mediaElements = document.querySelectorAll(".lightbox-trigger");
   const selectElement = document.getElementById("sort-select-ul");
 
+  // Itération sur chaque élément de mediaElements avec un gestionnaire d'événements onclick et au keydown et appel de la fonction openLightbox()
   mediaElements.forEach((element) => {
     element.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
@@ -19,22 +20,21 @@ async function displayLightbox() {
     console.log(element);
   });
 
+  //Gestionnaire d'événements onclick à selectElement pour récupérer la valeur du critère de tri sélectionné
   selectElement.onclick = (event) => {
     sortCriteria = event.target.getAttribute("data-value");
-    console.log(sortCriteria);
   };
 
+  //Gestionnaire d'événements keydown à selectElement pour récupérer la valeur du critère de tri sélectionné avec la touche Enter
   selectElement.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
-      console.log("bla");
-
       sortCriteria = event.target.getAttribute("data-value");
       console.log(sortCriteria);
     }
   });
 
+  // Fonction d'affichage de la lightbox
   async function openLightbox(event) {
-    console.log("openLightbox");
     const urlParams = new URLSearchParams(window.location.search);
     const photographeId = urlParams.get("id");
     const lightbox = document.getElementById("lightbox");
@@ -53,36 +53,25 @@ async function displayLightbox() {
       console.log(media);
 
       if (media) {
+        // Recupere l'index de l'élément sur lequel le clic a été effectué puis trie les médias en fonction du critère de tri (s'il est défini)
         const mediaIndex = Array.from(mediaElements).indexOf(event.target);
-        console.log(media);
-        console.log(mediaIndex);
-        /*  const selectedMedia = media[mediaIndex];
-        console.log(selectedMedia);
-        const selectedMediaId = selectedMedia.id;
-        console.log(selectedMediaId);*/
         let sortedMedia = media;
-        console.log(sortedMedia);
-        console.log(sortCriteria);
         if (sortCriteria) {
           sortedMedia = sortMedia(sortCriteria, media);
-          console.log(sortedMedia);
         }
         // eslint-disable-next-line no-undef
-        lightboxFactory(sortedMedia, mediaIndex);
+        const lightboxInstance = lightboxFactory();
+        lightboxInstance.createLightbox(sortedMedia, mediaIndex);
       } else {
-        console.error("Photographer medias not found");
+        console.error("Médias du photographe non trouvés");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Erreur lors de la récupération des données:", error);
     }
   }
 
-  // Fonction de tri des médias
+  // Fonction qui tri le tableau des medias en fonction des likes, des dates et des titres
   function sortMedia(sortCriteria, mediaArray) {
-    console.log("sortMedia");
-    console.log("Comparaison avant tri :", mediaArray);
-    console.log("sortCriteria:", sortCriteria);
-
     switch (sortCriteria) {
       case "popularity":
         mediaArray.sort((a, b) => b.likes - a.likes);
@@ -94,17 +83,16 @@ async function displayLightbox() {
         mediaArray.sort((a, b) => a.title.localeCompare(b.title));
         break;
       default:
-        console.error("Invalid sort criteria:", sortCriteria);
+        console.error("Critère de tri invalide:", sortCriteria);
         return false;
     }
-    console.log("Comparaison après tri :", mediaArray);
     return mediaArray;
   }
 }
 
+/* Fonction qui gère la fermeture de la lightbox */
 // eslint-disable-next-line no-unused-vars
 async function closeLightbox() {
-  console.log("closeLightbox");
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
   const main = document.getElementById("main");

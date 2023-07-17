@@ -1,8 +1,7 @@
-console.log("ici");
-
 import { photographeId } from "../pages/photographer.js";
 console.log(photographeId);
 
+// Fonction recupération de donnée d'un photographe grâce a son id et aussi les medias associé a lui
 async function getMedia(photographeId) {
   const response = await fetch("../data/photographers.json");
   if (!response.ok) {
@@ -21,9 +20,12 @@ async function getMedia(photographeId) {
   return { media, photographer };
 }
 
+// Fonction affichage des differentes données d'un photographe
 async function displayData(photographer) {
   const photographersSection = document.querySelector(".medias");
   console.log(photographer);
+
+  /* CALCUL ET AFFICHAGE DU NOMBRE DES LIKES */
 
   let likesArray = [];
 
@@ -42,9 +44,29 @@ async function displayData(photographer) {
 
   // eslint-disable-next-line no-undef
   main.appendChild(totalLikesElement);
-  console.log(photographer.media);
-  // Fonction pour trier les médias
 
+  /* SYSTEME DE TRI ET AFFICHAGE DES MEDIAS */
+
+  // Fonction qui tri le tableau des medias en fonction des likes, des dates et des titres
+  function sortMedia(sortCriteria, mediaArray) {
+    switch (sortCriteria) {
+      case "popularity":
+        mediaArray.sort((a, b) => b.likes - a.likes);
+        break;
+      case "date":
+        mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "title":
+        mediaArray.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      default:
+        console.error("Critère de tri invalide:", sortCriteria);
+        return false;
+    }
+    return mediaArray;
+  }
+
+  // Fonction qui utilise un switch pour trier le tableau de médias en fonction du critère sélectionné (date, titre, likes)
   function getSortedMediaArray(selectedValue, mediaArray) {
     let sortedMediaArray;
 
@@ -62,7 +84,7 @@ async function displayData(photographer) {
         sortedMediaArray = sortMedia("title", mediaArray);
         break;
       default:
-        console.error("Invalid sort criteria");
+        console.error("Critère de tri invalide");
         return;
     }
 
@@ -87,45 +109,15 @@ async function displayData(photographer) {
 
     return sortedMediaArray;
   }
-  const selectSpan = document.getElementById("selected-option-label");
-
-  selectSpan.addEventListener("click", (event) => {
-    if (event.target.tagName === "LI") {
-      const selectedValue = event.target.getAttribute("data-value");
-
-      const sortedMediaArray = getSortedMediaArray(
-        selectedValue,
-        photographer.media
-      );
-      console.log("Médias triés :", sortedMediaArray);
-    }
-  });
-
-  /* selectSpan.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      console.log("je c pas");
-      const selectElement = document.getElementById("sort-select-ul");
-      const selectedOption = selectElement
-        .querySelector("[aria-selected='true']")
-        .getAttribute("data-value");
-
-      if (selectedOption) {
-        const sortedMediaArray = getSortedMediaArray(
-          selectedOption,
-          photographer.media
-        );
-        console.log("Médias triés :", sortedMediaArray);
-      }
-    }
-  });*/
 
   const menu = document.getElementById("sort-select-ul");
+
+  // Gestionnaire d'événements au keydown sur menu pour detecter le critère de tri selectionner par l'utilisateur avec la touche enter et génère un élément DOM
 
   menu.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       const focusedOption = document.activeElement;
       const selectedValue = focusedOption.getAttribute("data-value");
-      console.log("Valeur de data-value :", selectedValue);
 
       if (selectedValue) {
         const sortedMediaArray = getSortedMediaArray(
@@ -136,6 +128,9 @@ async function displayData(photographer) {
       }
     }
   });
+
+  // Gestionnaire d'événements au click sur  menu pour detecter le critère de tri selectionner par l'utilisateur et génère un élément DOM
+
   menu.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
       const selectedValue = event.target.getAttribute("data-value");
@@ -146,7 +141,8 @@ async function displayData(photographer) {
       console.log("Médias triés : ", sortedMediaArray);
     }
   });
-  // Créer les éléments DOM et les ajouter à la page
+
+  // Itèration sur chaque média du photographe et génère un élément DOM
   photographer.media.forEach((media) => {
     // eslint-disable-next-line no-undef
     const photographerModel = mediaFactory(media);
@@ -154,7 +150,7 @@ async function displayData(photographer) {
     photographersSection.appendChild(userCardDOM);
   });
 
-  // Itération sur chaque élément de prix du photographe
+  // Itération sur chaque élément de prix du photographe et génère un élément DOM (encart)
   photographer.photographer.forEach((price) => {
     console.log(price);
     // eslint-disable-next-line no-undef
@@ -163,31 +159,10 @@ async function displayData(photographer) {
     photographersSection.appendChild(encartCardDOM);
   });
 }
-function sortMedia(sortCriteria, mediaArray) {
-  console.log("Comparaison avant tri :", mediaArray);
-  console.log("sortCriteria:", sortCriteria);
 
-  switch (sortCriteria) {
-    case "popularity":
-      mediaArray.sort((a, b) => b.likes - a.likes);
-      break;
-    case "date":
-      mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
-      break;
-    case "title":
-      mediaArray.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    default:
-      console.error("Invalid sort criteria:", sortCriteria);
-      return false;
-  }
-  console.log("Comparaison après tri :", mediaArray);
-  return mediaArray;
-}
-
+// Fonction appel getMedia et displayData et verifie qu'il n'y a pas d'erreur
 async function init() {
   try {
-    // Récupère les datas des photographes
     const photographer = await getMedia(photographeId);
     displayData(photographer);
   } catch (error) {
